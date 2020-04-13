@@ -69,7 +69,7 @@ changetest<-(todayn$`Test sayisi`[length(todayn$`Test sayisi`)]-todayn$`Test say
 changevaka<-(todayn$`Vaka sayisi`[length(todayn$`Vaka sayisi`)]-todayn$`Vaka sayisi`[length(todayn$`Vaka sayisi`)-1])/
   todayn$`Vaka sayisi`[length(todayn$`Vaka sayisi`)-1]
 
-url2<- "https://tr.wikipedia.org/wiki/T\u00DCrkiye%27de_2020_koronavirüs_pandemisi"
+url2<- "https://tr.wikipedia.org/wiki/T\u00DCrkiye%27de_2020_koronavir\u00FCs_pandemisi"
 webpage2 <- read_html(url2)
 turkey <- html_nodes(webpage2,'.mw-parser-output div td:nth-child(1)')
 data_turkey<-html_text(turkey)

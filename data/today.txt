@@ -1,0 +1,3 @@
+"Test sayisi","Vaka sayisi","Vefat sayisi","Iyilesen sayisi","date"
+35720,4789,97,481,"12 NISAN 2020"
+34456,4093,98,511,"13 NISAN 2020"

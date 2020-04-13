@@ -1,0 +1,2 @@
+"Test sayisi","Vaka sayisi","Vefat sayisi","Iyilesen sayisi"
+376100,56956,1198,3446

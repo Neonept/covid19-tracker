@@ -19,7 +19,7 @@ ui<-dashboardPagePlus(
     
     title = "Covid19 tracker",
     skin = "black",
-    
+    header = singleton(tags$head(includeHTML(("google-analytics.html")))),
     
     dashboardHeader(
         title = span(img(src = "virus-solid.svg", height = 35), "Covid19 tracker"),

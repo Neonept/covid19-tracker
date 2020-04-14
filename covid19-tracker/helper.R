@@ -74,14 +74,14 @@ url2<- "https://tr.wikipedia.org/wiki/T\u00FCrkiye%27de_2020_koronavir\u00FCs_pa
 webpage2 <- read_html(url2)
 turkey <- html_nodes(webpage2,'.mw-parser-output div td:nth-child(1)')
 data_turkey<-html_text(turkey)
-data_turkey<-data_turkey[38:118]
+data_turkey<-data_turkey[39:119]
 data_turkey<-gsub("\n", "", data_turkey)
 data_turkey<-data.frame(data_turkey)
 colnames(data_turkey)<-"Sehirler"
 
 turkey2 <- html_nodes(webpage2,'.mw-parser-output div td:nth-child(2)')
 data_turkey2<-html_text(turkey2)
-data_turkey2<-data_turkey2[37:117]
+data_turkey2<-data_turkey2[38:118]
 data_turkey2<-gsub("\n", "", data_turkey2)
 
 data_turkey$`Vaka sayisi` <- data_turkey2
@@ -91,7 +91,7 @@ mapdata <- mapdata[-4,]
 mapdata<-select(mapdata, name, longitude, latitude)
 mapdataSort<- mapdata[order(mapdata$name),]
 
-mapdata1<-select(data_turkey, Sehirler)
+mapdata1<-mapdataSort[,1]
 mapdata1$lat<-mapdataSort$latitude
 mapdata1$lon<-mapdataSort$longitude
 mapdata1$z<-data_turkey$`Vaka sayisi`

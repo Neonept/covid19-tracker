@@ -82,6 +82,15 @@ shinyServer(function(input, output, session) {
             hc_mapNavigation(enabled = TRUE) 
     })
     
+    output$worldmap <- renderHighchart({
+        
+        hcmap("custom/world-highres", data = nout, value = "confirmed",
+            joinBy = "hc-key", name = "confirmed cases",
+            dataLabels = list(enabled = FALSE, format = '{point.name}'),
+            borderColor = "blue", borderWidth = 0.1) %>%
+            hc_mapNavigation(enabled = TRUE)
+    })
+    
     # MODAL
     
     observeEvent("", {

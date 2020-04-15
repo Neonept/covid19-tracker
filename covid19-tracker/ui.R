@@ -12,6 +12,8 @@ library(shinydashboardPlus)
 library(shinydashboard)
 library(shiny)
 library(highcharter)
+library(devtools)
+library(dashboardthemes)
 
 source("helper.R")
 source("global.R")
@@ -19,8 +21,9 @@ source("global.R")
 
 ui<-dashboardPagePlus(
     
+    
+    
     title = "Covid19 tracker",
-    skin = "black",
     
     
     dashboardHeader(
@@ -31,15 +34,20 @@ ui<-dashboardPagePlus(
     ),
     
     dashboardSidebar(header = singleton(tags$head(includeHTML(("google-analytics.html")))),
+                      
                      
                      sidebarMenu(
                          
                          menuItem("Turkiye", tabName = "turkey" ),
-                         menuItem("Dunya", tabName = "world", icon = icon("world"), badgeLabel = "Yeni", badgeColor = "green")
+                         menuItem("Dunya", tabName = "world", icon = icon("globe"), badgeLabel = "Yeni", badgeColor = "green")
                      )
                      ),
     
     dashboardBody(
+        
+        shinyDashboardThemes(
+            theme = "blue_gradient"
+        ),
         
         tabItems(
             
@@ -78,7 +86,8 @@ ui<-dashboardPagePlus(
                      
                      selectInput(inputId = "countryName", label = "Bir ulke secin", choices = names(out), selected = "Turkey"),
                      
-                     box( highchartOutput("worldchart"))
+                     box( highchartOutput("worldchart")),
+                     box( highchartOutput("worldmap"))
                  )
             
             

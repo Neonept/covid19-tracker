@@ -10,6 +10,11 @@ daten<-as.data.frame(daten)
 todayn<-as.data.frame(todayn)
 totaln<-as.data.frame(totaln)
 
+dat<-read.csv("./data/data_turkey.txt")
+a <- read.csv("./data/first_index.txt")
+b <- read.csv("./data/last_index.txt")
+a <- a$x
+b <- b$x
 
 url <- "https://covid19.saglik.gov.tr"
 webpage <- read_html(url)
@@ -70,18 +75,39 @@ changevaka<-(todayn$`Vaka sayisi`[length(todayn$`Vaka sayisi`)]-todayn$`Vaka say
   todayn$`Vaka sayisi`[length(todayn$`Vaka sayisi`)-1]
 
 
+
+
+
+
 url2<- "https://tr.wikipedia.org/wiki/T\u00FCrkiye%27de_2020_koronavir\u00FCs_pandemisi"
 webpage2 <- read_html(url2)
 turkey <- html_nodes(webpage2,'.mw-parser-output div td:nth-child(1)')
 data_turkey<-html_text(turkey)
-data_turkey<-data_turkey[39:119]
+data_turkey<-data_turkey[(a+1):(b+1)]
 data_turkey<-gsub("\n", "", data_turkey)
 data_turkey<-data.frame(data_turkey)
 colnames(data_turkey)<-"Sehirler"
 
+if (all(data_turkey != dat)){
+  
+  a <- a+1
+  b <- b+1
+  
+  data_turkey<-data_turkey[(a+1):(b+1)]
+  data_turkey<-gsub("\n", "", data_turkey)
+  data_turkey<-data.frame(data_turkey)
+  colnames(data_turkey)<-"Sehirler"
+  write.csv(data_turkey, "./data/data_turkey.txt", quote = FALSE, row.names = FALSE)
+  write.csv(a, "./data/first_index.txt", quote = FALSE, row.names = FALSE)
+  write.csv(b, "./data/last_index.txt", quote = FALSE, row.names = FALSE)
+  
+}
+
+
+
 turkey2 <- html_nodes(webpage2,'.mw-parser-output div td:nth-child(2)')
 data_turkey2<-html_text(turkey2)
-data_turkey2<-data_turkey2[38:118]
+data_turkey2<-data_turkey2[a:b]
 data_turkey2<-gsub("\n", "", data_turkey2)
 
 data_turkey$`Vaka sayisi` <- data_turkey2

@@ -16,7 +16,7 @@ library(devtools)
 library(dashboardthemes)
 
 source("helper.R")
-source("global.R")
+#source("global.R")
 
 
 ui<-dashboardPagePlus(
@@ -38,7 +38,7 @@ ui<-dashboardPagePlus(
                      
                      sidebarMenu(
                          
-                         menuItem("Turkiye", tabName = "turkey" ),
+                         menuItem("Turkiye", tabName = "turkey", icon = icon("flag")),
                          menuItem("Dunya", tabName = "world", icon = icon("globe"), badgeLabel = "Yeni", badgeColor = "green")
                      )
                      ),
@@ -46,7 +46,7 @@ ui<-dashboardPagePlus(
     dashboardBody(
         
         shinyDashboardThemes(
-            theme = "blue_gradient"
+            theme = "onenote"
         ),
         
         tabItems(

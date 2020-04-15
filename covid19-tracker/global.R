@@ -1,6 +1,6 @@
 
 # Functions
-
+library(highcharter)
 
 
 tidyWorld <- function(countryName){

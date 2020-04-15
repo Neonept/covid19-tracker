@@ -88,7 +88,7 @@ data_turkey<-gsub("\n", "", data_turkey)
 data_turkey<-data.frame(data_turkey)
 colnames(data_turkey)<-"Sehirler"
 
-if (all(data_turkey != dat)){
+if (all(data_turkey$Sehirler != dat$Sehirler)){
   
   a <- a+1
   b <- b+1

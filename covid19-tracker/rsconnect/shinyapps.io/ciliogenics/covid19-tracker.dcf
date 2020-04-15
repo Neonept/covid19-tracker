@@ -5,8 +5,8 @@ account: ciliogenics
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 2110760
-bundleId: 3016778
+bundleId: 3018247
 url: https://ciliogenics.shinyapps.io/covid19-tracker/
-when: 1586955107.79014
+when: 1586972997.67839
 asMultiple: FALSE
 asStatic: FALSE

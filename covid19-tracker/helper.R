@@ -2,6 +2,14 @@
 library(data.table)
 library(rvest)
 library(dplyr)
+library(rjson)
+library(RCurl)
+library(jsonlite)
+
+
+encodedurl<-URLencode("https://pomber.github.io/covid19/timeseries.json")
+out <-  jsonlite::fromJSON(encodedurl)
+
 
 todayn<-fread("./data/today.txt")
 totaln<-fread("./data/total.txt")
@@ -93,6 +101,7 @@ if (all(as.character(data_turkey$Sehirler) != as.character(dat$Sehirler))){
   a <- a+1
   b <- b+1
   
+  data_turkey<-html_text(turkey)
   data_turkey<-data_turkey[(a+1):(b+1)]
   data_turkey<-gsub("\n", "", data_turkey)
   data_turkey<-data.frame(data_turkey)

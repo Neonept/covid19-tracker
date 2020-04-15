@@ -13,12 +13,37 @@ library(tidyr)
 
 
 source("helper.R")
+source("global.R")
 tidyToday<- gather(ch_todayn, type, number, `Vaka sayisi`:`Iyilesen sayisi`)
 tidyTotal<- gather(ch_totaln, type, number, `Vaka sayisi`:`Iyilesen sayisi`)
+
 
 # Define server logic required to draw a histogram
 shinyServer(function(input, output, session) {
 
+    
+    wrld <- reactive({
+        
+        tidyWorld(input$countryName)
+    })
+    
+    
+    
+    
+    output$worldchart <- renderHighchart({
+        
+        hchart(wrld(), "line", 
+                         hcaes(x = Tarih, y = number, group = type)) %>% 
+            hc_title(
+                text = ("Covid19 Gunluk Veriler")) %>%
+            hc_tooltip(table = TRUE, sort = TRUE) %>% 
+            hc_credits(
+                enabled = TRUE,
+                text = "Kaynak : T.C. Saglik Bakanligi",
+                href = "https://covid19.saglik.gov.tr") %>%
+            hc_add_theme(hc_theme_elementary())
+    })
+    
     
     
     output$dailychart <- renderHighchart({

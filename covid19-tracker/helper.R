@@ -2,8 +2,8 @@
 library(data.table)
 library(rvest)
 library(dplyr)
-library(rjson)
-library(RCurl)
+#library(rjson)
+#library(RCurl)
 library(jsonlite)
 
 

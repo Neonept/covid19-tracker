@@ -24,7 +24,7 @@ ui<-dashboardPagePlus(
     
     
     title = "Covid19 tracker",
-    
+    enable_preloader = TRUE,
     
     dashboardHeader(
         title = span(img(src = "virus-solid.svg", height = 35), "Covid19 tracker"),

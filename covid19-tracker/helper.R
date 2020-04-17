@@ -71,7 +71,6 @@ if (daten$Tarih != rdate$Tarih){
   write.csv(daten, "./data/date.txt", row.names = FALSE)
   write.csv(todayn, "./data/today.txt", row.names = FALSE)
   write.csv(totaln, "./data/total.txt", row.names = FALSE)
-  a=5
 }
 
 ch_todayn<-todayn[,2:5]

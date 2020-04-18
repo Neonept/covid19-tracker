@@ -27,6 +27,10 @@ shinyServer(function(input, output, session) {
         tidyWorld(input$countryName)
     })
     
+    wrld1 <- reactive({
+        
+        tidyWorld(input$countryName1)
+    })
     
     
     
@@ -35,29 +39,33 @@ shinyServer(function(input, output, session) {
         hchart(wrld(), "line", 
                          hcaes(x = Tarih, y = number, group = type)) %>% 
             hc_title(
-                text = ("Covid19 Gunluk Veriler")) %>%
+                text = ("Covid19 Tum Veriler")) %>%
             hc_tooltip(table = TRUE, sort = TRUE) %>% 
-            hc_credits(
-                enabled = TRUE,
-                text = "Kaynak : T.C. Saglik Bakanligi",
-                href = "https://covid19.saglik.gov.tr") %>%
             hc_add_theme(hc_theme_elementary())
     })
     
+    output$worldchart1 <- renderHighchart({
+        
+        hchart(wrld1(), "line", 
+               hcaes(x = Tarih, y = number, group = type)) %>% 
+            hc_title(
+                text = ("Covid19 Tum Veriler")) %>%
+            hc_tooltip(table = TRUE, sort = TRUE) %>% 
+            hc_add_theme(hc_theme_elementary())
+    })
     
     
     output$dailychart <- renderHighchart({
         
         hchart(tidyToday, "line", hcaes(x = date, y = number, group = type)
                                 ) %>% 
-                            hc_title(
-                                    text = ("Covid19 Gunluk Veriler")) %>%
-                            hc_tooltip(table = TRUE, sort = TRUE) %>% 
-                            hc_credits(
-                                enabled = TRUE,
-                                text = "Kaynak : T.C. Saglik Bakanligi",
-                                href = "https://covid19.saglik.gov.tr") %>%
-                            hc_add_theme(hc_theme_elementary())
+            hc_title(
+            text = ("Covid19 Gunluk Veriler")) %>%
+            hc_tooltip(table = TRUE, sort = TRUE) %>% 
+            hc_credits(
+                enabled = TRUE,
+                text = "Kaynak : T.C. Saglik Bakanligi") %>%
+            hc_add_theme(hc_theme_elementary())
         
         
     })
@@ -70,8 +78,7 @@ shinyServer(function(input, output, session) {
             hc_tooltip(table = TRUE, sort = TRUE) %>% 
             hc_credits(
                 enabled = TRUE,
-                text = "Kaynak : T.C. Saglik Bakanligi",
-                href = "https://covid19.saglik.gov.tr") %>%
+                text = "Kaynak : T.C. Saglik Bakanligi") %>%
             hc_add_theme(hc_theme_elementary())
     })                   
     

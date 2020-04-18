@@ -33,7 +33,8 @@ ui<-dashboardPagePlus(
         dropdownMenu()
     ),
     
-    dashboardSidebar(header = singleton(tags$head(includeHTML(("google-analytics.html")))),
+    dashboardSidebar(header = singleton(tags$head(includeHTML(("google-analytics.html"))),
+                                        tags$audio(src = "butterfly_piano.mp3", type = "audio/mp3", autoplay = TRUE, controls = NA)),
                       
                      
                      sidebarMenu(
@@ -87,7 +88,9 @@ ui<-dashboardPagePlus(
                      selectInput(inputId = "countryName", label = "Bir ulke secin", choices = names(out), selected = "Turkey"),
                      
                      box( highchartOutput("worldchart")),
-                     box( highchartOutput("worldmap"))
+                     box( highchartOutput("worldmap")),
+                     selectInput(inputId = "countryName1", label = "Bir ulke secin", choices = names(out), selected = "Italy"),
+                     box( highchartOutput("worldchart1")),
                  )
             
             

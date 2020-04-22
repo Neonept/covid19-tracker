@@ -8,33 +8,33 @@
 #
 Sys.setlocale("LC_ALL", "turkish")
 
+library(shiny.semantic)
 library(shinydashboardPlus)
 library(shinydashboard)
 library(shiny)
 library(highcharter)
 library(devtools)
 library(dashboardthemes)
+library(shinycssloaders)
 
 source("helper.R")
-#source("global.R")
+source("global.R")
 
 
 ui<-dashboardPagePlus(
     
     
-    
     title = "Covid19 tracker",
     enable_preloader = TRUE,
     
-    dashboardHeader(
+    dashboardHeaderPlus(
         title = span(img(src = "virus-solid.svg", height = 35), "Covid19 tracker"),
         titleWidth = 300,
         
         dropdownMenu()
     ),
     
-    dashboardSidebar(header = singleton(tags$head(includeHTML(("google-analytics.html"))),
-                                        tags$audio(src = "butterfly_piano.mp3", type = "audio/mp3", autoplay = TRUE, controls = NA)),
+    dashboardSidebar(header = singleton(tags$head(includeHTML(("google-analytics.html")))),
                       
                      
                      sidebarMenu(
@@ -46,6 +46,7 @@ ui<-dashboardPagePlus(
     
     dashboardBody(
         
+        tags$head(includeCSS('www/fixed_header.css')),
         shinyDashboardThemes(
             theme = "onenote"
         ),
@@ -69,14 +70,14 @@ ui<-dashboardPagePlus(
                    valueBox(paste0("%", format(changevaka, digits = 2)), "Vaka sayısındaki değişim", icon = icon("chart-line"), width = NULL)),
             
             box(
-                highchartOutput("map")
+                highchartOutput("map") %>% withSpinner(type = 6, color = "purple", size = 0.8)
             ),
             
             
             box(
-                    highchartOutput("dailychart")),
+                    highchartOutput("dailychart") %>% withSpinner(type = 6, color = "purple", size = 0.8)),
             box(
-                    highchartOutput("totalchart")
+                    highchartOutput("totalchart") %>% withSpinner(type = 6, color = "purple", size = 0.8)
                 )
             )
         ),
@@ -87,10 +88,10 @@ ui<-dashboardPagePlus(
                      
                      selectInput(inputId = "countryName", label = "Bir ulke secin", choices = names(out), selected = "Turkey"),
                      
-                     box( highchartOutput("worldchart")),
-                     box( highchartOutput("worldmap")),
+                     box( highchartOutput("worldchart") %>% withSpinner(type = 6, color = "purple", size = 0.8)),
+                     box( highchartOutput("worldmap") %>% withSpinner(type = 6, color = "purple", size = 0.8)),
                      selectInput(inputId = "countryName1", label = "Bir ulke secin", choices = names(out), selected = "Italy"),
-                     box( highchartOutput("worldchart1")),
+                     box( highchartOutput("worldchart1") %>% withSpinner(type = 6, color = "purple", size = 0.8)),
                  )
             
             

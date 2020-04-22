@@ -1,0 +1,20 @@
+/* NOTE: put this file in a subdirectory named "www" */
+
+.sidebar {
+  color: #FFF;
+  position: fixed;
+  width: 220px;
+  white-space: nowrap;
+  overflow: visible;
+}
+
+.main-header {
+  position: fixed;
+  width:100%;
+}
+
+.content {
+  padding-top: 60px;
+}
+
+/* TODO: push content down */
